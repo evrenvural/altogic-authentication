@@ -25,7 +25,7 @@ This template provides basic user management functionality. It creates a users m
 
 ![views](./assets/creating-project2.png)
 
-## Storage
+## Storing Session
 
 I have installed the altogic client in react native project and set up a context API to keep session information and access all components. 
 
