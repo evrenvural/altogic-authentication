@@ -26,6 +26,7 @@ This template provides basic user management functionality. It creates a users m
 ![views](./assets/creating-project2.png)
 
 ## Storage
+
 I have installed the altogic client in react native project and set up a context API to keep session information and access all components. 
 
 I have downloaded the AsyncStorage library to save the information held by the context API to the storage. Then I have created a Storage class that wrapped AsyncStorage in order to keep the keys together and prevent doing JSON parse operations every time.
@@ -462,5 +463,3 @@ function HomeView({ navigation }) {
 export default HomeView
 
 ```
-
-Thanks for reading.
