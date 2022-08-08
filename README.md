@@ -4,11 +4,11 @@ Hello, in this article, I will tell you how to build email/password based authen
 
 ## Creating Project
 
-Firstly, I have created React Native project, three views home, sign in, and sign up.
+Firstly, I have created React Native project with three views home, sign in, and sign up.
 
 ![views](./assets/creating-project.png)
 
-Then I have installed React Navigation library, and I have created the Altogic app. When I have entered the project name, I have chosen Email & Password Authentication templated. 
+Then I installed React Navigation library, and I created the Altogic app. After filling the project name I have chosen the Email & Password Authentication template from the popup window.
 This template provides basic user management functionality. It creates a users model to store users' name, email, password, profile picture, sign-up, and last login date information and provides the following endpoints:
 
 - Sign up new user - Using the provided user input data creates a new user in the database and returns the newly created user information and a session token.
@@ -29,7 +29,7 @@ This template provides basic user management functionality. It creates a users m
 
 I have installed the altogic client in react native project and set up a context API to keep session information and access all components. 
 
-I have downloaded the AsyncStorage library to save the information held by the context API to the storage. Then I have created a Storage class that wrapped AsyncStorage in order to keep the keys together and prevent doing JSON parse operations every time.
+I have downloaded the AsyncStorage library to save the information held by the context API to the storage. Then I created a Storage class that wrapped AsyncStorage in order to keep the keys together and prevent doing JSON parse operations every time.
 
 ```javascript
 import AsyncStorage from "@react-native-async-storage/async-storage"
@@ -62,7 +62,7 @@ export default new Storage()
 ```
 
 ## Auth Context
-I have created auth.context.js after creating the storage class, and I have made a connection with the storage class to save this information. With the help of the useFetch hook, I could fetch the initial value in useState asynchronously.
+I have created auth.context.js after creating the storage class, and I made a connection with the storage class to save this information. With the help of the useFetch hook, I could fetch the initial value in useState asynchronously.
 
 The main context component is the provider. It fetches data from storage and writes the state. If the value is changed by setState, useEffect is triggered, and it is written to the state.
 
@@ -116,7 +116,7 @@ export default Provider
 ```
 
 ## Navigation Control
-I have assigned a path to the views in order to return to the app with the link in the email confirmation. (Deep Linking) The home page takes optional tokens as a parameter. If you come to this page with the token parameter, the application is accessed without password with the help of altogic’s getAuthGrant function.
+I have assigned a path to the views. Its purpose returning to the app with the link. (Deep Linking) The home page takes optional tokens as a parameter. If you come to this page with the token in the link, you will sign in without password.
 
 - Note: You need to set deep link to create link for views. https://reactnavigation.org/docs/deep-linking/
 
@@ -270,7 +270,7 @@ export default App;
 ```
 
 ## Sign Up & Sign In
-altogic.auth.signupWithEmail function requires two parameters: email, and password. Three responses are returned as user, session, and error. User contains id, providerUserId, provider, signUpAt, lastLoginAt, emailVerified, and phoneVerified. The session contains userId, token, creationDtm, accessGroupKeys, and userAgent information. If there is user and session information in the response from altogic in the signUp function, this information is saved to the storage with context auth, and the user is directed to the home page.
+altogic.auth.signupWithEmail function requires two parameters: email, and password. In the response session, user and error objects can be returned. User contains id, providerUserId, provider, signUpAt, lastLoginAt, emailVerified, and phoneVerified. The session contains userId, token, creationDtm, accessGroupKeys, and userAgent information. If there is user and session information in the response from altogic in the signUp function, this information is saved to the storage with context auth, and the user is directed to the home page.
 
 ```javascript
 import React, { useState } from "react"
@@ -345,7 +345,7 @@ function SignUpView({ navigation }) {
 export default SignUpView
 ```
 
-The signIn function works very similarly to signUp. It generates a token and wants you to store it.
+The signIn function works very similarly to signUp. It generates a session token to use for further queries.
 
 ```javascript
 import React, { useState } from "react"
